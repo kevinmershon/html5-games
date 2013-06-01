@@ -1,0 +1,9 @@
+# vim swapfiles
+*.swp
+*.swo
+
+# compiled css
+*.css
+
+# compiled javascript
+*.js
