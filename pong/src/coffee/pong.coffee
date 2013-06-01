@@ -14,3 +14,18 @@ $(document).ready ->
     position:
       x: pong.center.x
       y: pong.center.y
+
+  # set up a helper function for drawing the ball
+  pong.drawBall = ->
+    pong.context.beginPath()
+    pong.context.arc(pong.ball.position.x,
+      pong.ball.position.y,
+      pong.ball.radius,
+      0,
+      2 * Math.PI,
+      false
+    )
+    pong.context.fillStyle = "white"
+    pong.context.fill()
+
+  pong.drawBall()
