@@ -1,25 +1,25 @@
 # main object for storing state/whatever
-pong = {}
+Pong = {}
 
 
 # set up constants
-pong.constants =
+Pong.constants =
   MAX_VELOCITY: 20
   IMPULSE: 10
   DRAG: 5/6
 
 
 $(document).ready ->
-  pong.canvas = $("#pong")[0]
-  pong.context = pong.canvas.getContext("2d")
+  Pong.canvas = $("#pong")[0]
+  Pong.context = Pong.canvas.getContext("2d")
 
-  pong.initializeStructure()
-  pong.initializeGraphics()
-  pong.initializeInput()
+  Pong.initializeStructure()
+  Pong.initializeGraphics()
+  Pong.initializeInput()
 
   # set up the main game loop
-  pong.gameLoop = ->
-    pong.drawFrame()
+  Pong.gameLoop = ->
+    Pong.drawFrame()
 
   # kick off the game loop
-  pong.gameLoop()
+  Pong.gameLoop()

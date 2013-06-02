@@ -1,38 +1,40 @@
-pong.initializeStructure = ->
-  pong.center =
-    x: pong.canvas.width / 2
-    y: pong.canvas.height / 2
+Pong.initializeStructure = ->
+  Pong.center =
+    x: Pong.canvas.width / 2
+    y: Pong.canvas.height / 2
 
   # start the ball in the center of the screen
-  pong.ball =
-    radius: 10
+  Pong.ball =
     position:
-      x: pong.center.x
-      y: pong.center.y
+      x: Pong.center.x
+      y: Pong.center.y
+    radius: 10
 
   # set up the paddles
-  pong.paddles =
+  Pong.paddles =
     left:
       length: 100
-      width: 10
+      momentum: 0
       position:
         x: 5
-        y: pong.center.y
+        y: Pong.center.y
+      velocity: 0.0
+      width: 10
     right:
       length: 100
-      width: 10
+      momentum: 0
       position:
-        x: pong.canvas.width - 15
-        y: pong.center.y
+        x: Pong.canvas.width - 15
+        y: Pong.center.y
+      velocity: 0.0
+      width: 10
 
   # set up player state
-  pong.players =
+  Pong.players =
     one:
-      velocity: 0.0
+      paddle: Pong.paddles.left
       score: 0
-      paddle: pong.paddles.left
     two:
-      velocity: 0.0
+      paddle: Pong.paddles.right
       score: 0
-      paddle: pong.paddles.right
 

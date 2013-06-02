@@ -1,59 +1,58 @@
-pong.initializeGraphics = ->
+Pong.initializeGraphics = ->
   # set up a helper to draw the background
-  pong.drawBackground = ->
-    pong.context.beginPath()
-    pong.context.fillStyle = "#496e91"
-    pong.context.rect(0, 0, pong.canvas.width, pong.canvas.height)
-    pong.context.fill()
+  Pong.drawBackground = ->
+    Pong.context.beginPath()
+    Pong.context.fillStyle = "#496e91"
+    Pong.context.rect(0, 0, Pong.canvas.width, Pong.canvas.height)
+    Pong.context.fill()
 
   # set up a helper function for drawing the ball
-  pong.drawBall = ->
-    pong.context.beginPath()
-    pong.context.arc(
-      pong.ball.position.x,
-      pong.ball.position.y,
-      pong.ball.radius,
+  Pong.drawBall = ->
+    Pong.context.beginPath()
+    Pong.context.arc(
+      Pong.ball.position.x,
+      Pong.ball.position.y,
+      Pong.ball.radius,
       0,
       2 * Math.PI,
       false
     )
-    pong.context.fillStyle = "#a0c5e8"
-    pong.context.fill()
+    Pong.context.fillStyle = "#a0c5e8"
+    Pong.context.fill()
 
   # set up a helper function for drawing the paddles
-  pong.drawPaddles = ->
-    pong.context.beginPath()
+  Pong.drawPaddles = ->
+    Pong.context.beginPath()
 
     # left paddle
-    pong.context.rect(
-      pong.paddles.left.position.x,
-      pong.paddles.left.position.y - pong.paddles.left.length/2,
-      pong.paddles.left.width,
-      pong.paddles.left.length
+    Pong.context.rect(
+      Pong.paddles.left.position.x,
+      Pong.paddles.left.position.y - Pong.paddles.left.length/2,
+      Pong.paddles.left.width,
+      Pong.paddles.left.length
     )
-    pong.context.fillStyle = "#a0c5e8"
-    pong.context.fill()
+    Pong.context.fillStyle = "#a0c5e8"
+    Pong.context.fill()
 
     # right paddle
-    pong.context.rect(
-      pong.paddles.right.position.x,
-      pong.paddles.right.position.y - pong.paddles.right.length/2,
-      pong.paddles.right.width,
-      pong.paddles.right.length
+    Pong.context.rect(
+      Pong.paddles.right.position.x,
+      Pong.paddles.right.position.y - Pong.paddles.right.length/2,
+      Pong.paddles.right.width,
+      Pong.paddles.right.length
     )
-    pong.context.fillStyle = "#a0c5e8"
-    pong.context.fill()
+    Pong.context.fillStyle = "#a0c5e8"
+    Pong.context.fill()
 
   # set up a helper function for moving a paddle
-  pong.movePaddle = (player) ->
-    paddle = player.paddle
-    if player.velocity isnt 0
-      paddle.position.y += player.velocity
+  Pong.movePaddle = (paddle) ->
+    if paddle.velocity isnt 0
+      paddle.position.y += paddle.velocity
 
     if paddle.position.y - paddle.length/2 <= 0
       paddle.position.y = paddle.length/2
-    if paddle.position.y + paddle.length/2 >= pong.canvas.height
-      paddle.position.y = pong.canvas.height - paddle.length/2
+    if paddle.position.y + paddle.length/2 >= Pong.canvas.height
+      paddle.position.y = Pong.canvas.height - paddle.length/2
 
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
@@ -63,14 +62,16 @@ pong.initializeGraphics = ->
   window.requestAnimationFrame = requestAnimationFrame
 
   # set up a function for drawing each frame
-  pong.drawFrame = ->
-    pong.context.clearRect(
-      0, 0, pong.canvas.width, pong.canvas.height)
-    pong.drawBackground()
-    pong.drawBall()
-    if pong.players.one.velocity isnt 0
-      pong.movePaddle(pong.players.one)
-      pong.players.one.velocity *= pong.players.one.momentum
-    pong.drawPaddles()
+  Pong.drawFrame = ->
+    Pong.context.clearRect(
+      0, 0, Pong.canvas.width, Pong.canvas.height)
+    Pong.drawBackground()
+    Pong.drawBall()
 
-    window.requestAnimationFrame(pong.gameLoop)
+    paddle = Pong.players.one.paddle
+    if paddle.velocity isnt 0
+      Pong.movePaddle(paddle)
+      paddle.velocity *= paddle.momentum
+    Pong.drawPaddles()
+
+    window.requestAnimationFrame(Pong.gameLoop)

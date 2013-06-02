@@ -1,25 +1,29 @@
 # set up movement input handlers
-pong.initializeInput = ->
+Pong.initializeInput = ->
   $("body").on "keydown", (e) ->
+    paddle = Pong.players.one.paddle
+
     switch e.which
       when 40, 74 # j (down)
-        pong.players.one.velocity += pong.constants.IMPULSE
-        if pong.players.one.velocity > pong.constants.MAX_VELOCITY
-          pong.players.one.velocity = pong.constants.MAX_VELOCITY
-        pong.players.one.momentum = 1
-        console.log pong.players.one.velocity
+        paddle.velocity += Pong.constants.IMPULSE
+        if paddle.velocity > Pong.constants.MAX_VELOCITY
+          paddle.velocity = Pong.constants.MAX_VELOCITY
+        paddle.momentum = 1
+        console.log paddle.velocity
       when 38, 75 # k (up)
-        pong.players.one.velocity -= pong.constants.IMPULSE
-        if pong.players.one.velocity < -pong.constants.MAX_VELOCITY
-          pong.players.one.velocity = -pong.constants.MAX_VELOCITY
-        pong.players.one.momentum = 1
-        console.log pong.players.one.velocity
+        paddle.velocity -= Pong.constants.IMPULSE
+        if paddle.velocity < -Pong.constants.MAX_VELOCITY
+          paddle.velocity = -Pong.constants.MAX_VELOCITY
+        paddle.momentum = 1
+        console.log paddle.velocity
 
   $("body").on "keyup", (e) ->
+    paddle = Pong.players.one.paddle
+
     switch e.which
       when 40, 74 # j (down)
-        pong.players.one.momentum *= pong.constants.DRAG
-        console.log pong.players.one.velocity
+        paddle.momentum *= Pong.constants.DRAG
+        console.log paddle.velocity
       when 38, 75 # k (up)
-        pong.players.one.momentum *= pong.constants.DRAG
-        console.log pong.players.one.velocity
+        paddle.momentum *= Pong.constants.DRAG
+        console.log paddle.velocity
