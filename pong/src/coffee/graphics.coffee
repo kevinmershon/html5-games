@@ -1,10 +1,20 @@
 Pong.initializeGraphics = ->
   # set up a helper to draw the background
   Pong.drawBackground = ->
+    # fill background color
     Pong.context.beginPath()
     Pong.context.fillStyle = "#496e91"
     Pong.context.rect(0, 0, Pong.canvas.width, Pong.canvas.height)
     Pong.context.fill()
+
+    # draw dotted line down the center of the court
+    Pong.context.beginPath()
+    Pong.context.strokeStyle = "#a0c5e8"
+    Pong.context.setLineDash([5, 10])
+    Pong.context.moveTo(Pong.center.x, 0)
+    Pong.context.lineTo(Pong.center.x, Pong.canvas.height)
+    Pong.context.closePath()
+    Pong.context.stroke()
 
   # set up a helper function for drawing the ball
   Pong.drawBall = ->
