@@ -7,3 +7,6 @@
 
 # compiled javascript
 *.js
+
+# ctags tags
+.tags
