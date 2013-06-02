@@ -3,7 +3,7 @@ Pong.initializeGraphics = ->
   Pong.drawBackground = ->
     # fill background color
     Pong.context.beginPath()
-    Pong.context.fillStyle = "#496e91"
+    Pong.context.fillStyle = "black"
     Pong.context.rect(0, 0, Pong.canvas.width, Pong.canvas.height)
     Pong.context.fill()
 
@@ -27,7 +27,7 @@ Pong.initializeGraphics = ->
       2 * Math.PI,
       false
     )
-    Pong.context.fillStyle = "#a0c5e8"
+    Pong.context.fillStyle = "white"
     Pong.context.fill()
 
   # set up a helper function for drawing the paddles
@@ -41,7 +41,7 @@ Pong.initializeGraphics = ->
       Pong.paddles.left.width,
       Pong.paddles.left.length
     )
-    Pong.context.fillStyle = "#a0c5e8"
+    Pong.context.fillStyle = "white"
     Pong.context.fill()
 
     # right paddle
@@ -51,7 +51,7 @@ Pong.initializeGraphics = ->
       Pong.paddles.right.width,
       Pong.paddles.right.length
     )
-    Pong.context.fillStyle = "#a0c5e8"
+    Pong.context.fillStyle = "white"
     Pong.context.fill()
 
   # set up a helper function for moving a paddle
