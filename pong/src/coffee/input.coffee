@@ -15,6 +15,9 @@ Pong.initializeInput = ->
           paddle.velocity = -Pong.constants.MAX_VELOCITY
         paddle.momentum = 1
 
+    Pong.players.two.paddle.velocity = -paddle.velocity
+    Pong.players.two.paddle.momentum = paddle.momentum
+
   $("body").on "keyup", (e) ->
     paddle = Pong.players.one.paddle
 
@@ -23,3 +26,6 @@ Pong.initializeInput = ->
         paddle.momentum *= Pong.constants.DRAG
       when 38, 75 # k (up)
         paddle.momentum *= Pong.constants.DRAG
+
+    Pong.players.two.paddle.velocity = -paddle.velocity
+    Pong.players.two.paddle.momentum = paddle.momentum
