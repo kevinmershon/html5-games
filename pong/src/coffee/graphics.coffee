@@ -49,10 +49,14 @@ Pong.initializeGraphics = ->
     if paddle.velocity isnt 0
       paddle.position.y += paddle.velocity
 
+    # ensure paddle doesn't leave the screen
     if paddle.position.y - paddle.length/2 <= 0
       paddle.position.y = paddle.length/2
     if paddle.position.y + paddle.length/2 >= Pong.canvas.height
       paddle.position.y = Pong.canvas.height - paddle.length/2
+
+    # apply drag to current velocity
+    paddle.velocity *= paddle.momentum
 
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
@@ -63,15 +67,16 @@ Pong.initializeGraphics = ->
 
   # set up a function for drawing each frame
   Pong.drawFrame = ->
+    # figure out movements before drawing
+    Pong.movePaddle(Pong.paddles.left)
+    Pong.movePaddle(Pong.paddles.right)
+
+    # draw the frame
     Pong.context.clearRect(
       0, 0, Pong.canvas.width, Pong.canvas.height)
     Pong.drawBackground()
     Pong.drawBall()
-
-    paddle = Pong.players.one.paddle
-    if paddle.velocity isnt 0
-      Pong.movePaddle(paddle)
-      paddle.velocity *= paddle.momentum
     Pong.drawPaddles()
 
+    # queue the next frame to be drawn
     window.requestAnimationFrame(Pong.gameLoop)
