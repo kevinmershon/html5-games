@@ -29,6 +29,14 @@ $(document).ready ->
         x: pong.canvas.width - 15
         y: pong.center.y
 
+  # set up a helper to draw the background
+  pong.drawBackground = ->
+    pong.context.beginPath()
+    pong.context.fillStyle = "#496e91"
+    pong.context.rect(0, 0, pong.canvas.width, pong.canvas.height)
+    pong.context.fill()
+
+
   # set up a helper function for drawing the ball
   pong.drawBall = ->
     pong.context.beginPath()
@@ -40,7 +48,7 @@ $(document).ready ->
       2 * Math.PI,
       false
     )
-    pong.context.fillStyle = "white"
+    pong.context.fillStyle = "#a0c5e8"
     pong.context.fill()
 
   pong.drawPaddles = ->
@@ -53,7 +61,7 @@ $(document).ready ->
       pong.paddles.left.width,
       pong.paddles.left.length
     )
-    pong.context.fillStyle = "white"
+    pong.context.fillStyle = "#a0c5e8"
     pong.context.fill()
 
     # right paddle
@@ -63,9 +71,11 @@ $(document).ready ->
       pong.paddles.right.width,
       pong.paddles.right.length
     )
-    pong.context.fillStyle = "white"
+    pong.context.fillStyle = "#a0c5e8"
     pong.context.fill()
 
 
+  pong.context.clearRect(0, 0, pong.canvas.width, pong.canvas.height)
+  pong.drawBackground()
   pong.drawBall()
   pong.drawPaddles()
