@@ -1,7 +1,4 @@
 pong.initializeGraphics = ->
-  pong.canvas = $("#pong")[0]
-  pong.context = pong.canvas.getContext("2d")
-
   # set up a helper to draw the background
   pong.drawBackground = ->
     pong.context.beginPath()

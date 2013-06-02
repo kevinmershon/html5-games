@@ -10,6 +10,9 @@ pong.constants =
 
 
 $(document).ready ->
+  pong.canvas = $("#pong")[0]
+  pong.context = pong.canvas.getContext("2d")
+
   pong.initializeStructure()
   pong.initializeGraphics()
   pong.initializeInput()
