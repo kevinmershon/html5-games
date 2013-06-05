@@ -90,6 +90,23 @@ Pong.initializeGraphics = ->
     console.log "left distance: #{leftDistance}"
     if leftDistance < left.length/2
       console.log "near left"
+      # check for an actual collision
+      collidedOnXaxis = (
+        ball.position.x - ball.radius <=
+          left.position.x + left.width/2
+      )
+      collidedOnYaxis = (
+        # above bottom
+        (ball.position.y - ball.radius <=
+          left.position.y + left.length/2) and
+        # below top
+        (ball.position.y + ball.radius >=
+          left.position.y - left.length/2)
+      )
+      collided = collidedOnXaxis and collidedOnYaxis
+      if collided
+        console.log "collided with left"
+        ball.velocity.x = -ball.velocity.x
 
 
   # set up the requestAnimationFrame helper
