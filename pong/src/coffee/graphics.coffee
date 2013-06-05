@@ -71,7 +71,7 @@ Pong.initializeGraphics = ->
     paddle.velocity *= paddle.momentum
 
   # set up a helper function for moving the ball
-  Pong.moveBall = (ball) ->
+  Pong.moveBall = (ball, left, right) ->
     ball.position.x += ball.velocity.x
     ball.position.y += ball.velocity.y
 
@@ -79,6 +79,18 @@ Pong.initializeGraphics = ->
     if ball.position.y - ball.radius <= 0 or
         ball.position.y + ball.radius >= Pong.canvas.height
       ball.velocity.y = -ball.velocity.y
+
+    # bound ball against paddles (this is much trickier!)
+    #
+    # start with radial distance check, for efficiency
+    leftDistance = Math.sqrt(
+      Math.pow(ball.position.x - left.position.x, 2) +
+      Math.pow(ball.position.y - left.position.y, 2)
+    )
+    console.log "left distance: #{leftDistance}"
+    if leftDistance < left.length/2
+      console.log "near left"
+
 
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
@@ -90,7 +102,7 @@ Pong.initializeGraphics = ->
   # set up a function for drawing each frame
   Pong.drawFrame = ->
     # figure out movements before drawing
-    Pong.moveBall(Pong.ball)
+    Pong.moveBall(Pong.ball, Pong.paddles.left, Pong.paddles.right)
     Pong.movePaddle(Pong.paddles.left)
     Pong.movePaddle(Pong.paddles.right)
 
