@@ -75,6 +75,11 @@ Pong.initializeGraphics = ->
     ball.position.x += ball.velocity.x
     ball.position.y += ball.velocity.y
 
+    # bounce ball against top and bottom walls
+    if ball.position.y - ball.radius <= 0 or
+        ball.position.y + ball.radius >= Pong.canvas.height
+      ball.velocity.y = -ball.velocity.y
+
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
