@@ -19,7 +19,7 @@ Pong.initializeStructure = ->
       length: 100
       momentum: 0
       position:
-        x: 5
+        x: 10
         y: Pong.center.y
       velocity: 0.0
       width: 10
@@ -27,7 +27,7 @@ Pong.initializeStructure = ->
       length: 100
       momentum: 0
       position:
-        x: Pong.canvas.width - 15
+        x: Pong.canvas.width - 10
         y: Pong.center.y
       velocity: 0.0
       width: 10

@@ -36,7 +36,7 @@ Pong.initializeGraphics = ->
 
     # left paddle
     Pong.context.rect(
-      Pong.paddles.left.position.x,
+      Pong.paddles.left.position.x - Pong.paddles.left.width/2,
       Pong.paddles.left.position.y - Pong.paddles.left.length/2,
       Pong.paddles.left.width,
       Pong.paddles.left.length
@@ -46,7 +46,7 @@ Pong.initializeGraphics = ->
 
     # right paddle
     Pong.context.rect(
-      Pong.paddles.right.position.x,
+      Pong.paddles.right.position.x - Pong.paddles.right.width/2,
       Pong.paddles.right.position.y - Pong.paddles.right.length/2,
       Pong.paddles.right.width,
       Pong.paddles.right.length
