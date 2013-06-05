@@ -80,34 +80,60 @@ Pong.initializeGraphics = ->
         ball.position.y + ball.radius >= Pong.canvas.height
       ball.velocity.y = -ball.velocity.y
 
-    # bound ball against paddles (this is much trickier!)
+    # bounce ball against paddles (this is much trickier!)
     #
     # start with radial distance check, for efficiency
-    leftDistance = Math.sqrt(
-      Math.pow(ball.position.x - left.position.x, 2) +
-      Math.pow(ball.position.y - left.position.y, 2)
-    )
-    console.log "left distance: #{leftDistance}"
-    if leftDistance < left.length/2
-      console.log "near left"
-      # check for an actual collision
-      collidedOnXaxis = (
-        ball.position.x - ball.radius <=
-          left.position.x + left.width/2
+    if ball.velocity.x < 0
+      leftDistance = Math.sqrt(
+        Math.pow(ball.position.x - left.position.x, 2) +
+        Math.pow(ball.position.y - left.position.y, 2)
       )
-      collidedOnYaxis = (
-        # above bottom
-        (ball.position.y - ball.radius <=
-          left.position.y + left.length/2) and
-        # below top
-        (ball.position.y + ball.radius >=
-          left.position.y - left.length/2)
-      )
-      collided = collidedOnXaxis and collidedOnYaxis
-      if collided
-        console.log "collided with left"
-        ball.velocity.x = -ball.velocity.x
+      console.log "left distance: #{leftDistance}"
+      if leftDistance < left.length/2
+        console.log "near left"
+        # check for an actual collision
+        collidedOnXaxis = (
+          ball.position.x - ball.radius <=
+            left.position.x + left.width/2
+        )
+        collidedOnYaxis = (
+          # above bottom
+          (ball.position.y - ball.radius <=
+            left.position.y + left.length/2) and
+          # below top
+          (ball.position.y + ball.radius >=
+            left.position.y - left.length/2)
+        )
+        collided = collidedOnXaxis and collidedOnYaxis
+        if collided
+          console.log "collided with left"
+          ball.velocity.x = -ball.velocity.x
 
+    if ball.velocity.x > 0
+      rightDistance = Math.sqrt(
+        Math.pow(ball.position.x - right.position.x, 2) +
+        Math.pow(ball.position.y - right.position.y, 2)
+      )
+      console.log "right distance: #{rightDistance}"
+      if rightDistance < right.length/2
+        console.log "near right"
+        #check for an actual collision
+        collidedOnXaxis = (
+          ball.position.x + ball.radius >=
+            right.position.x - right.width/2
+        )
+        collidedOnYaxis = (
+          # above bottom
+          (ball.position.y - ball.radius <=
+            right.position.y + right.length/2) and
+          # below top
+          (ball.position.y + ball.radius >=
+            right.position.y - right.length/2)
+        )
+        collided = collidedOnXaxis and collidedOnYaxis
+        if collided
+          console.log "collided with right"
+          ball.velocity.x = -ball.velocity.x
 
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
