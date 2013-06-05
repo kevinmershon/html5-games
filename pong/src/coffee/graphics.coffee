@@ -62,8 +62,10 @@ Pong.initializeGraphics = ->
     # ensure paddle doesn't leave the screen
     if paddle.position.y - paddle.length/2 <= 0
       paddle.position.y = paddle.length/2
+      paddle.velocity = 0
     if paddle.position.y + paddle.length/2 >= Pong.canvas.height
       paddle.position.y = Pong.canvas.height - paddle.length/2
+      paddle.velocity = 0
 
     # apply drag to current velocity
     paddle.velocity *= paddle.momentum
