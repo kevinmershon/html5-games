@@ -8,6 +8,9 @@ Pong.initializeStructure = ->
     position:
       x: Pong.center.x
       y: Pong.center.y
+    velocity:
+      x: 0
+      y: 0
     radius: 10
 
   # set up the paddles
