@@ -70,6 +70,11 @@ Pong.initializeGraphics = ->
     # apply drag to current velocity
     paddle.velocity *= paddle.momentum
 
+  # set up a helper function for moving the ball
+  Pong.moveBall = (ball) ->
+    ball.position.x += ball.velocity.x
+    ball.position.y += ball.velocity.y
+
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -80,6 +85,7 @@ Pong.initializeGraphics = ->
   # set up a function for drawing each frame
   Pong.drawFrame = ->
     # figure out movements before drawing
+    Pong.moveBall(Pong.ball)
     Pong.movePaddle(Pong.paddles.left)
     Pong.movePaddle(Pong.paddles.right)
 
