@@ -88,9 +88,9 @@ Pong.initializeGraphics = ->
         Math.pow(ball.position.x - left.position.x, 2) +
         Math.pow(ball.position.y - left.position.y, 2)
       )
-      console.log "left distance: #{leftDistance}"
       if leftDistance < left.length/2
-        console.log "near left"
+        Pong.notify
+          type: "near-left"
         # check for an actual collision
         collidedOnXaxis = (
           ball.position.x - ball.radius <=
@@ -106,7 +106,8 @@ Pong.initializeGraphics = ->
         )
         collided = collidedOnXaxis and collidedOnYaxis
         if collided
-          console.log "collided with left"
+          Pong.notify
+            type: "collide-left"
           ball.velocity.x = -ball.velocity.x
 
     if ball.velocity.x > 0
@@ -114,9 +115,9 @@ Pong.initializeGraphics = ->
         Math.pow(ball.position.x - right.position.x, 2) +
         Math.pow(ball.position.y - right.position.y, 2)
       )
-      console.log "right distance: #{rightDistance}"
       if rightDistance < right.length/2
-        console.log "near right"
+        Pong.notify
+          type: "near-right"
         #check for an actual collision
         collidedOnXaxis = (
           ball.position.x + ball.radius >=
@@ -132,7 +133,8 @@ Pong.initializeGraphics = ->
         )
         collided = collidedOnXaxis and collidedOnYaxis
         if collided
-          console.log "collided with right"
+          Pong.notify
+            type: "collide-right"
           ball.velocity.x = -ball.velocity.x
 
   # set up the requestAnimationFrame helper

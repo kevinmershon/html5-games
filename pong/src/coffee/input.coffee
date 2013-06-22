@@ -22,7 +22,8 @@ Pong.initializeInput = ->
 
       when 32 # spacebar
         # reset the ball
-        console.log "reset!"
+        Pong.notify
+          type: "reset"
         Pong.ball.position =
           x: Pong.center.x
           y: Pong.center.y

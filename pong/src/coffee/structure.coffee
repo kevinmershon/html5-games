@@ -41,3 +41,22 @@ Pong.initializeStructure = ->
       paddle: Pong.paddles.right
       score: 0
 
+  Pong.listeners = []
+
+  Pong.notify = (event) ->
+    for listener in Pong.listeners then do (listener) =>
+      if event.type is listener.type
+        listener.notify(event)
+
+  Pong.listeners.push
+    type: "reset"
+    notify: ->
+      console.log "reset!"
+  Pong.listeners.push
+    type: "collide-left"
+    notify: ->
+      console.log "collide left!"
+  Pong.listeners.push
+    type: "collide-right"
+    notify: ->
+      console.log "collide right!"
