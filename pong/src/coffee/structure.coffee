@@ -33,6 +33,7 @@ Pong.initializeStructure = ->
       reset: ->
         Pong.paddles.left.momentum = 0
         Pong.paddles.left.velocity = 0
+        Pong.paddles.left.length = 100
         Pong.paddles.left.position =
           x: 10
           y: Pong.center.y
@@ -47,6 +48,7 @@ Pong.initializeStructure = ->
       reset: ->
         Pong.paddles.right.momentum = 0
         Pong.paddles.right.velocity = 0
+        Pong.paddles.right.length = 100
         Pong.paddles.right.position =
           x: Pong.canvas.width - 10
           y: Pong.center.y
@@ -75,10 +77,18 @@ Pong.initializeStructure = ->
   Pong.listeners.push
     type: "collide-left"
     notify: ->
+      Pong.paddles.left.length = Math.max(
+        20,
+        Pong.paddles.left.length - 5
+      )
       console.log "collide left!"
   Pong.listeners.push
     type: "collide-right"
     notify: ->
+      Pong.paddles.right.length = Math.max(
+        20,
+        Pong.paddles.right.length - 5
+      )
       console.log "collide right!"
 
   # set up a global reset function
