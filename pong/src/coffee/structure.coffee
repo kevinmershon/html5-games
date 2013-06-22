@@ -94,13 +94,13 @@ Pong.initializeStructure = ->
     type: "player-one-score"
     notify: ->
       Pong.players.one.score++
-      Pong.animateMessage("Player one scores! #{Pong.players.one.score}", "red")
+      Pong.animateMessage("Player one scores!", "red")
       Pong.reset()
   Pong.listeners.push
     type: "player-two-score"
     notify: ->
       Pong.players.two.score++
-      Pong.animateMessage("Player two scores! #{Pong.players.two.score}", "red")
+      Pong.animateMessage("Player two scores!", "red")
       Pong.reset()
   Pong.listeners.push
     type: "play-start"

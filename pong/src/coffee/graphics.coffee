@@ -151,6 +151,13 @@ Pong.initializeGraphics = ->
       Pong.context.textAlign = "center"
       Pong.context.fillText(Pong.message.contents, Pong.center.x, Pong.center.y - 30)
 
+  Pong.drawScores = ->
+    Pong.context.fillStyle = "white"
+    Pong.context.font = "bold 40px sans-serif"
+    Pong.context.textAlign = "center"
+    Pong.context.fillText(Pong.players.one.score, Pong.center.x - 40, 50)
+    Pong.context.fillText(Pong.players.two.score, Pong.center.x + 40, 50)
+
   Pong.animateMessage = (message, color) ->
     Pong.message =
       color: color
@@ -177,6 +184,7 @@ Pong.initializeGraphics = ->
     Pong.drawBackground()
     Pong.drawBall()
     Pong.drawPaddles()
+    Pong.drawScores()
     Pong.drawMessage()
 
     # queue the next frame to be drawn
