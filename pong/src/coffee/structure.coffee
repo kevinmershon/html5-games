@@ -96,6 +96,7 @@ Pong.initializeStructure = ->
     Pong.ball.reset()
     Pong.paddles.left.reset()
     Pong.paddles.right.reset()
+    Pong.message = null
 
     Pong.notify
       type: "reset"

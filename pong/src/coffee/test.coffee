@@ -47,6 +47,7 @@ Pong.test.tests.push (->
     Pong.listeners.push(@leftListener)
     Pong.listeners.push(@rightListener)
   @call = =>
+    Pong.animateText("2 bounces per paddle", "red")
     # reset the ball
     Pong.ball.velocity =
       x: 5

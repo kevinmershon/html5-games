@@ -137,6 +137,19 @@ Pong.initializeGraphics = ->
             type: "collide-right"
           ball.velocity.x = -ball.velocity.x
 
+  Pong.drawMessage = (message, color) ->
+    if Pong.message
+      Pong.context.fillStyle = Pong.message.color
+      Pong.context.font = "bold #{Pong.message.size}px sans-serif"
+      Pong.context.textAlign = "center"
+      Pong.context.fillText(Pong.message.contents, Pong.center.x, Pong.center.y - 30)
+
+  Pong.animateText = (message, color) ->
+    Pong.message =
+      color: color
+      contents: message
+      size: 18
+
   # set up the requestAnimationFrame helper
   requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -157,6 +170,7 @@ Pong.initializeGraphics = ->
     Pong.drawBackground()
     Pong.drawBall()
     Pong.drawPaddles()
+    Pong.drawMessage()
 
     # queue the next frame to be drawn
     window.requestAnimationFrame(Pong.gameLoop)
