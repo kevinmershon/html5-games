@@ -90,13 +90,28 @@ Pong.initializeStructure = ->
         Pong.paddles.right.length - 5
       )
       console.log "collide right!"
+  Pong.listeners.push
+    type: "player-one-score"
+    notify: ->
+      Pong.players.one.score++
+      Pong.animateMessage("Player one scores! #{Pong.players.one.score}", "red")
+      Pong.reset()
+  Pong.listeners.push
+    type: "player-two-score"
+    notify: ->
+      Pong.players.two.score++
+      Pong.animateMessage("Player two scores! #{Pong.players.two.score}", "red")
+      Pong.reset()
+  Pong.listeners.push
+    type: "play-start"
+    notify: ->
+      Pong.message = null
 
   # set up a global reset function
   Pong.reset = ->
     Pong.ball.reset()
-    Pong.paddles.left.reset()
-    Pong.paddles.right.reset()
-    Pong.message = null
+    # Pong.paddles.left.reset()
+    # Pong.paddles.right.reset()
 
     Pong.notify
       type: "reset"

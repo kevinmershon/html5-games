@@ -2,12 +2,12 @@ Pong.test = (->
   @deferred = $.Deferred()
 
   @runTest = (t) ->
-    Pong.reset()
+    Pong.initializeStructure()
     Pong.listeners.push
       type: "end-test"
       notify: (event) =>
         t.tearDown()
-        Pong.reset()
+        Pong.initializeStructure()
         @deferred.resolve()
     Pong.notify
       type: "begin-test"
@@ -46,8 +46,8 @@ Pong.test.tests.push (->
     @hitCount = 0
     Pong.listeners.push(@leftListener)
     Pong.listeners.push(@rightListener)
+    Pong.animateMessage("2 bounces per paddle", "red")
   @call = =>
-    Pong.animateText("2 bounces per paddle", "red")
     # reset the ball
     Pong.ball.velocity =
       x: 5
@@ -57,6 +57,7 @@ Pong.test.tests.push (->
       Pong.listeners, @leftListener, @rightListener
     )
     console.log "done!"
+    Pong.message = null
 
   this
 )()

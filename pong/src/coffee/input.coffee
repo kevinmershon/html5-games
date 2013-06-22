@@ -21,7 +21,8 @@ Pong.initializeInput = ->
         paddle.momentum = 1
 
       when 32 # spacebar
-        Pong.reset()
+        Pong.notify
+          type: "play-start"
         Pong.ball.velocity =
           x: (if Math.random() > 0.5 then 5 else -5)
           y: (Math.random() * 20) - 10

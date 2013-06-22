@@ -80,6 +80,13 @@ Pong.initializeGraphics = ->
         ball.position.y + ball.radius >= Pong.canvas.height
       ball.velocity.y = -ball.velocity.y
 
+    if ball.position.x - ball.radius <= 0
+      Pong.notify
+        type: "player-two-score"
+    if ball.position.x + ball.radius >= Pong.canvas.width
+      Pong.notify
+        type: "player-one-score"
+
     # bounce ball against paddles (this is much trickier!)
     #
     # start with radial distance check, for efficiency
@@ -144,7 +151,7 @@ Pong.initializeGraphics = ->
       Pong.context.textAlign = "center"
       Pong.context.fillText(Pong.message.contents, Pong.center.x, Pong.center.y - 30)
 
-  Pong.animateText = (message, color) ->
+  Pong.animateMessage = (message, color) ->
     Pong.message =
       color: color
       contents: message
